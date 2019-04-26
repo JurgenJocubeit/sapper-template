@@ -1,10 +1,25 @@
 {
+  "functions": {
+    "predeploy": [
+      "cp -r ../__sapper__ ./functions/",
+      "npm run changeBuildDir"
+    ]
+  },
   "hosting": {
     "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "app"
+      }
+    ],
+    "predeploy": [
+      "cp -r ../static ./public"
     ]
   }
 }

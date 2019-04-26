@@ -3,8 +3,11 @@
   "description": "TODO",
   "version": "0.0.1",
   "scripts": {
+    "clean": "rm -fr __sapper__ && rm -fr firebase/public && rm -fr firebase/functions/__sapper__",
     "dev": "sapper dev",
     "build": "sapper build --legacy",
+    "changeBuildDir": "sed -i -e \"s#.*const build_dir.*#const build_dir = __dirname + '/..';#\" firebase/functions/__sapper__/build/server/server.js",
+    "deploy:firebase": "npm run clean && npm run build && cd firebase && firebase deploy",
     "export": "sapper export --legacy",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
